@@ -1,0 +1,188 @@
+#!/usr/bin/python3 
+#-*- coding=utf-8 -*-
+
+import random
+import time
+from time import sleep
+
+def main():
+    while(True):
+        print('1:打印九九乘法口诀表\n2:kmb\n3:石头剪刀布\n4:计算器')
+        select = str(input())
+        if select == str(1):
+            print('“打印九九乘法口诀表”进入中...')
+            打印九九乘法口诀表()
+        elif select == str(2):
+            print('“kmb”进入中...')
+            kmb()
+        elif select == str(3):
+            print('“石头剪刀布”进入中...')
+            石头剪刀布()
+        elif select == str(4):
+            print('“计算器”进入中...')
+            计算器()
+        else:
+            print('出错啦！再试一次！')
+
+def 打印九九乘法口诀表():
+    print('带不带边框？\n输入“y”以确定\n否则回车打印不带边框版')
+    judge = str(input())
+    if judge == str('y'):
+        for i in range(1,10):
+            print(('┣' if i>1 else '┏') + ('━'*8 + '╋') * (i-1) + '━'*8 + '┓')  
+            for j in range(1,i+1):
+                print("┃",end="")
+                print("%2d×%-2d=%2d"%(j,i,i*j),end='')
+            print('┃' + ' ' * 5 ,end='')
+            print('')
+        print('┗' + ('━'*8 + '┻')*8 + '━'*8 + '┛')
+    else:
+        for i in range(1,10):
+            #print(('┣' if i>1 else '┏') + ('━'*8 + '╋') * (i-1) + '━'*8 + '┓')  
+            for j in range(1,i+1):
+                #print("┃",end="")
+                print("%2d×%-2d=%2d"%(j,i,i*j),end='')
+            #print('┃' + ' ' * 5 ,end='')
+            print('')
+        #print('┗' + ('━'*8 + '┻')*8 + '━'*8 + '┛')
+
+
+def kmb():
+    k = '000'
+    m = '000000'
+    b = '000000000'
+    is_run = True
+    while(is_run):
+        print('k?m?b? k/m/b \ntype stop to exit')
+        input1 = input()
+        if input1 =='m':
+            print('?m')
+            a = str(input())
+            print(str(a) + str(m))
+        elif input1 =='b':
+            print('?b')
+            a = str(input())
+            print(str(a) + str(b))
+        elif input1 =='k':
+            print('?k')
+            a = str(input())
+            print(str(a) + str(k))
+        elif input1 == 'stop':
+            break
+
+        else:
+            print('出错啦！')
+
+
+def 石头剪刀布():
+    AI_score = 0
+    Player_score = 0
+    while(True):
+        print('想退出就输入“exit”\n输入任意键(推荐回车)以继续')
+        judge = str(input())
+        if judge == str(exit):
+            break
+        else:
+            AI = str(random.randint(1,3))
+            print('1:石头\n2:剪刀\n3:布')
+            Player = str(input())
+            if AI == str(1) and Player == str(1):
+                print('AI也出了石头')
+                time.sleep(0.5)
+                print('平局！')
+                time.sleep(0.5)
+                print(str(AI_score) + ':' + str(Player_score))
+            elif AI == str(1) and Player == str(2):
+                print('AI出了石头')
+                time.sleep(0.5)
+                print('你输了！')
+                time.sleep(0.5)
+                AI_score += 1
+                print(str(AI_score) + ':' + str(Player_score))
+            elif AI == str(1) and Player == str(3):
+                print('AI出了石头')
+                time.sleep(0.5)
+                print('你赢了！')
+                time.sleep(0.5)
+                Player_score += 1
+                print(str(AI_score) + ':' + str(Player_score))
+            elif AI == str(2) and Player == str(1):
+                print('AI出了剪刀')
+                time.sleep(0.5)
+                print('你赢了！')
+                Player_score += 1
+                time.sleep(0.5)
+                print(str(AI_score) + ':' + str(Player_score))
+            elif AI == str(2) and Player == str(2):
+                print('AI也出了剪刀')
+                time.sleep(0.5)
+                print('平局！')
+                time.sleep(0.5)
+                print(str(AI_score) + ':' + str(Player_score))
+            elif AI == str(2) and Player == str(3):
+                print('AI出了剪刀')
+                time.sleep(0.5)
+                print('你输了！')
+                time.sleep(0.5)
+                AI_score += 1
+                print(str(AI_score) + ':' + str(Player_score))
+            elif AI == str(3) and Player == str(1):
+                print('AI出了布')
+                time.sleep(0.5)
+                print('你输了！')
+                AI_score += 1
+                time.sleep(0.5)
+                print(str(AI_score) + ':' + str(Player_score))
+            elif AI == str(3) and Player == str(2):
+                print('AI出了布')
+                time.sleep(0.5)
+                print('你赢了！')
+                Player_score += 1
+                time.sleep(0.5)
+                print(str(AI_score) + ':' + str(Player_score))
+            elif AI == str(3) and Player == str(3):
+                print('AI也出了布')
+                time.sleep(0.5)
+                print('平局！')
+                time.sleep(0.5)
+                print(str(AI_score) + ':' + str(Player_score))
+            else:
+                print('输错啦！') 
+    print('再见！')
+
+
+
+def 计算器():
+    while(True):
+        print('想退出就输入“exit”/n输入任意键以继续')
+        judge = str(input())
+        if judge == str(exit):
+            break
+        else:
+            print('结果是：',eval(input('请输入算式：')))
+    print('再见！')
+
+
+def 猜数字():
+    while(True):
+        print('想退出就输入“exit”/n输入任意键以继续')
+        judge = str(input())
+        if judge == str(exit):
+            break
+        else:
+            print('输入数字最小值')
+            MIN = str(input())
+            print('输入数字最大值')
+            MAX = str(input())
+            object = random.randint(MIN,MAX)
+            
+
+
+
+
+
+
+
+    
+
+main()
